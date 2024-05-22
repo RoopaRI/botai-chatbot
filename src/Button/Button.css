@@ -1,11 +1,11 @@
 .btn{
     background-color: #D7C7F4;
     color: black;
-    /* height: 41px; */
+    height: 41px;
     width: 70px;
     margin: 0 10px;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
 }
 .btn :hover{

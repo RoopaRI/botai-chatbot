@@ -3,13 +3,15 @@ import "./HomePage.css";
 import data  from "../sampleData.json";
 import DefaultHomePage from "../DefaultHomePage/DefaultHomePage";
 import { TextField } from '@mui/material';
+import ChatBox from "../ChatBox/ChatBox";
+import ButtonBTN from "../Button/Button";
 
 export default function HomePage(){
     const [showChat, setShowChat] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [question, setQuestion] = useState('');
     const [response, setResponse] = useState('');
-    const [ chatHistory, setChatHistory] = useState([]);
+    const [chatHistory, setChatHistory] = useState([]);
     const [messages, setMessages] = useState([
         {
           message: "Hi I am BOT AI",
@@ -55,8 +57,8 @@ export default function HomePage(){
                 
             </div>
             <div className="right-container">
-                {showChat ? (null
-            //   <ChatBox messages={messages}/>
+                {showChat ? (
+              <ChatBox messages={messages}/>
                 ): (
                 <DefaultHomePage/>
                 )}
@@ -72,8 +74,11 @@ export default function HomePage(){
                 value={inputValue} 
                 onChange={handleInputChange}
               />
-              <button className="btn" onClick={handleAsk}>Ask</button>
-              <button className="btn">Save</button>
+              <div className="button">
+              <ButtonBTN className="btn" text={"Ask"} onClick={handleAsk}/>
+              <ButtonBTN text={"Save"}  />
+              </div>
+              
               
             </div>
         </div>

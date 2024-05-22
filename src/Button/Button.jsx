@@ -1,9 +1,8 @@
-import Button from '@mui/material/Button';
 import PropTypes from "prop-types";
 import "./Button.css"
-const ButtonBTN = ({ text, onClick }) => {
+export default function ButtonBTN ({ text, onClick }) {
   return (
-    <Button className="btn" variant="contained" onClick={onClick}>{text}</Button>
+    <button className="btn" variant="contained" onClick={onClick}>{text}</button>
   )
 }
 ButtonBTN.propTypes = {
@@ -11,4 +10,3 @@ ButtonBTN.propTypes = {
     onClick: PropTypes.func, // Require question prop of type string
     
   };
-export default ButtonBTN;
