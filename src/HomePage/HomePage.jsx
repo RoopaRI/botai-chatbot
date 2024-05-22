@@ -32,8 +32,6 @@ export default function HomePage(){
       }
 
       const handleAsk = () => {
-        // setShowChat(true);
-        // console.log("true");
         const question = (inputValue.trim().toLowerCase());
         setQuestion(question);
         const foundQuestion = data.find(item => item.question.toLowerCase().includes(question));
