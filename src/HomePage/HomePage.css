@@ -1,0 +1,40 @@
+.container{
+    display:flex;
+}
+
+.left-container{
+    min-width: 208px;
+    min-height: 100vh;
+    height:100%;
+    background-color: white;
+    /* color: black; */
+}
+
+.input-area{
+    position: absolute; 
+    /* bottom: 0%; */
+    top: 777px;
+    left: 20%;
+    display: flex;
+    /* width: 100%; */
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    min-width: 846px;
+    background-color: white;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+
+
+.btn{
+    background-color: #D7C7F4;
+    height: 41px;
+    width: 70px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}

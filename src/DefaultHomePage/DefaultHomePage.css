@@ -1,7 +1,7 @@
 .container{
     /* background-color: linear-gradient(to right, #D7C7F4, #9785BA); */
-    background-color: #e4d9f5;
-    width:1280px;
+    background-color: #e7e1f1;
+    width:1080px;
     height: 806px;
     position:absolute;
     /* width: calc(100vw   - 208px); */
@@ -11,17 +11,15 @@
     display:flex;
     flex-wrap: wrap;
     position:absolute;
-    justify-content: space-around;
+    gap:10px;
     top:476px;
-    left:222px;
+    /* left:122px; */
 }
 
 .top-heading{
     position:absolute;
     width:100px;
     height:32px;
-    top:37px;
-    left:236px;
     font-weight: 700;
     color:#9785BA;
     font-size: 28px;
@@ -33,7 +31,7 @@
     width:348px;
     height:32px;
     top:252px;
-    left:569px;
+    left:369px;
     font-weight: 500;
     font-size: 28px;
     text-align: center;
