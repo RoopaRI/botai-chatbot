@@ -5,6 +5,7 @@ import DefaultHomePage from "../DefaultHomePage/DefaultHomePage";
 import { TextField } from '@mui/material';
 import ChatBox from "../ChatBox/ChatBox";
 import ButtonBTN from "../Button/Button";
+import NewChat from "../NewChat/NewChat";
 
 export default function HomePage(){
     const [showChat, setShowChat] = useState(false);
@@ -33,6 +34,11 @@ export default function HomePage(){
         setChatHistory([...chatHistory, { question, response }]);
       }
 
+      const handleNewChat = (()=>{
+        console.log("clicked")
+        setShowChat(false);
+      })
+
       const handleAsk = () => {
         const question = (inputValue.trim().toLowerCase());
         setQuestion(question);
@@ -53,7 +59,7 @@ export default function HomePage(){
     return(
         <div className="container">
             <div className="left-container">
-                <h3>NewChat</h3>
+            <NewChat onClick={handleNewChat}/>
                 
             </div>
             <div className="right-container">
