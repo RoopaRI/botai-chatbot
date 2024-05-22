@@ -1,0 +1,41 @@
+.container{
+    /* background-color: linear-gradient(to right, #D7C7F4, #9785BA); */
+    background-color: #e4d9f5;
+    width:1280px;
+    height: 806px;
+    position:absolute;
+    /* width: calc(100vw   - 208px); */
+}
+
+.Cards{
+    display:flex;
+    flex-wrap: wrap;
+    position:absolute;
+    justify-content: space-around;
+    top:476px;
+    left:222px;
+}
+
+.top-heading{
+    position:absolute;
+    width:100px;
+    height:32px;
+    top:37px;
+    left:236px;
+    font-weight: 700;
+    color:#9785BA;
+    font-size: 28px;
+    line-height: 32.17px;
+}
+
+.subHeading{
+    position:absolute;
+    width:348px;
+    height:32px;
+    top:252px;
+    left:569px;
+    font-weight: 500;
+    font-size: 28px;
+    text-align: center;
+    color:#000000;
+}
