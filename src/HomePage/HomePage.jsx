@@ -16,9 +16,9 @@ export default function HomePage(props){
         <div className={`AppBody AppBodyTheme-${theme}`}>
              <div className='AppBodyHead'>
                  {
-                     !sidebarON ? <img onClick={handleSideBar} src={menuIcon} alt='menu icon' width={50} height={50} /> : null
+                     !sidebarON ? <img className="menu" onClick={handleSideBar} src={menuIcon} alt='menu icon' width={40} height={40} /> : null
                  }
-                <h1>Bot AI</h1>
+                {pastConvo ? null: <h1>Bot AI</h1>} 
                 {
                 pastConvo ?
                 <PastConversation />

@@ -29,7 +29,10 @@
 
 /* screen above 600px */
 @media screen and (min-width: 750px) {
-    .AppBodyHead img {
+    /* .AppBodyHead img {
+        display: none;
+    } */
+    .menu{
         display: none;
     }
 }

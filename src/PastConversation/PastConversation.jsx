@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
-//styles
 import "./PastConversation.css"
-//components
 import ConvoCard from '../ConvoCard/ConvoCard';
-//contexts
 import { ThemeContext } from "../AllContexts";
+import Dropdown from '../Dropdown/DropDown';
 
 
 
 export default function PastConversation() {
-    //states
     const [convos, setConvos] = useState([]);
-    //side effects
+
     useEffect(()=> {
         loadConvos();
     }, []);
-    //functions
+    
     const loadConvos = () => {
         const allConvos = window.localStorage.getItem("pastConversations");
         if(allConvos) setConvos(JSON.parse(allConvos));
@@ -28,6 +25,7 @@ export default function PastConversation() {
     return (
         <div className='PastConvo'>
             <h4>Conversation History</h4>
+            <Dropdown />
             <div className='pastConvoBody'>
                 {convos.length ? displayCards() : <h2>No Past Conversations Found</h2> }
             </div>
