@@ -1,0 +1,14 @@
+.past-conv{
+    min-width: 176px;
+    min-height: 39px;
+    background: #a896c9;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: 10px;
+    cursor: pointer;
+}

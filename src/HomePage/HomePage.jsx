@@ -1,92 +1,32 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import "./HomePage.css";
-import data  from "../sampleData.json";
-import DefaultHomePage from "../DefaultHomePage/DefaultHomePage";
-import { TextField } from '@mui/material';
+import menuIcon from "../assets/menu.svg";
+
+import { ThemeContext } from "../AllContexts";
 import ChatBox from "../ChatBox/ChatBox";
-import ButtonBTN from "../Button/Button";
-import NewChat from "../NewChat/NewChat";
+import PastConversation from "../PastConversation/PastConversation";
 
-export default function HomePage(){
-    const [showChat, setShowChat] = useState(false);
-    const [inputValue, setInputValue] = useState('');
-    const [question, setQuestion] = useState('');
-    const [response, setResponse] = useState('');
-    const [chatHistory, setChatHistory] = useState([]);
-    const [messages, setMessages] = useState([
-        {
-          message: "Hi I am BOT AI",
-          sender:  true,
-        }
-      ]);
 
-      const handleInputChange = (e) => {
-        setInputValue(e.target.value)
-      }
-
-      const handleMessages = () => {
-        const newMessages = [
-          ...messages,
-          { message : question, sender: 'user'},
-          { message : response, sender: 'bot'},
-        ];    
-        setMessages(newMessages);
-        setChatHistory([...chatHistory, { question, response }]);
-      }
-
-      const handleNewChat = (()=>{
-        console.log("clicked")
-        setShowChat(false);
-      })
-
-      const handleAsk = () => {
-        const question = (inputValue.trim().toLowerCase());
-        setQuestion(question);
-        const foundQuestion = data.find(item => item.question.toLowerCase().includes(question));
-        
-        if(foundQuestion){
-          setResponse(foundQuestion.response);
-          setShowChat(true);
-        }else{
-          setResponse("Sorry, Coudnt find the response for this question")
-          setShowChat(true);
-        }
-        handleMessages(question, response);
-        setInputValue('');
-        setShowChat(true);
-      };
+export default function HomePage(props){
+    const { handleSideBar, sidebarON, currentChat, addChatMsg, clearCurrentChat, pastConvo, likeDislikeReply } = props;
+    
+    const [theme, setTheme] = useContext(ThemeContext)
 
     return(
-        <div className="container">
-            <div className="left-container">
-            <NewChat onClick={handleNewChat}/>
-                
-            </div>
-            <div className="right-container">
-                {showChat ? (
-              <ChatBox messages={messages}/>
-                ): (
-                <DefaultHomePage/>
-                )}
-            </div>
-            
-        <div className="input-area">
-              <TextField 
-                style={{outline: 'none'}} 
-                fullWidth className="chatbox" 
-                id="outlined-basic" 
-                label="Ask your question here..." 
-                variant="outlined" 
-                value={inputValue} 
-                onChange={handleInputChange}
-              />
-              <div className="button">
-              <ButtonBTN className="btn" text={"Ask"} onClick={handleAsk}/>
-              <ButtonBTN text={"Save"}  />
-              </div>
-              
-              
+        <div className={`AppBody AppBodyTheme-${theme}`}>
+             <div className='AppBodyHead'>
+                 {
+                     !sidebarON ? <img onClick={handleSideBar} src={menuIcon} alt='menu icon' /> : null
+                 }
+                <h1>Bot AI</h1>
+                {
+                pastConvo ?
+                <PastConversation />
+                :
+                <ChatBox messages={currentChat}/>
+            }
             </div>
         </div>
     );
+   
 }
