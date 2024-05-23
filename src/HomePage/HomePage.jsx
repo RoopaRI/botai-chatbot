@@ -23,7 +23,7 @@ export default function HomePage(props){
                 pastConvo ?
                 <PastConversation />
                 :
-                <ChatBox messages={currentChat}/>
+                <ChatBox likeDislikeReply={likeDislikeReply} clearCurrentChat={clearCurrentChat} addChatMsg={addChatMsg} currentChat={currentChat}/>
             }
             </div>
         </div>

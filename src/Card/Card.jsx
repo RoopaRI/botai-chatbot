@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Card.css";
+import { ThemeContext } from "../AllContexts";
 
 export default function Card(props){
-    const { text, subText } = props;
+    const { mainText, subText, handleFormInput } = props;
+    const [theme, setTheme] = useContext(ThemeContext);
+
     return(
-    <div className="card-items">
-       <h3>{text}</h3>
-       <p>{subText}</p> 
-    </div>
+        <div className={`SuggestCard SuggestCardTheme-${theme}`} onClick={()=> handleFormInput(mainText)}>
+            <span className='SuggestCard-mainText'>{mainText}</span>
+            <span className='SuggestCard-subtext'>{subText}</span>
+        </div>
        
     );
 }

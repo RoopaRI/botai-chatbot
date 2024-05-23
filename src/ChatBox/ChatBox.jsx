@@ -1,43 +1,99 @@
-// import { Box } from "@mui/material";
-import PropTypes from "prop-types";
+import React, { useContext, useEffect } from 'react';
+import { ThemeContext } from "../AllContexts";
+import DefaultHomePage from "../DefaultHomePage/DefaultHomePage";
 import "./ChatBox.css";
-import userDP from "../assets/dp.png";
-import AIDP from "../assets/logo.png";
+import botai from "../assets/logo.png";
+import user from "../assets/dp.png";
+import likeOutlinedIcon from "../assets/like-outline-black.svg";
+import dislikeOutlinedIcon from "../assets/dislike-outline-black.svg";
+import sampleData from "../sampleData.json";
+import { createTimeStamp, findQuestionFromSampleData, saveChatToLocal } from "../functions/functions";
+import ChatCard from '../ChatCard/ChatCard';
+import InputFeild from '../InputFeild/InputFeild';
 
+export default function ChatBox (props) {
+    const { currentChat, addChatMsg, clearCurrentChat, likeDislikeReply } = props;
+    const [theme, setTheme] = useContext(ThemeContext);
 
-const ChatBox = ({ messages }) => {
-    console.log(messages)
-  return (
-    <div className="main">
-      {/* <div className="top-heading">Bot AI</div>
-      <p className="subHeading"> How Can I help You</p> */}
-      <div className="chats">
-      {messages.map((message, index) => (
-        <div className="chatCard" key={index} >
-            <div>
-                <img src={messages.sender==='user'? userDP : AIDP} alt="" width={65} height={69} />
-            </div>
+    useEffect(()=>{
+        if(!currentChat) return
+        scrollToBottom();
+    }, [currentChat])
+
+    const handleFormInput = text => {
         
-            <div className="chat" >
-                <h2>{messages.sender === "user"? 'You' : 'Bot AI'}</h2>
-                <p className="message">{message.message}</p>
-                <p className="clock">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-            </div>
+        // create relevant response from form input
+        // create new chat cards from form input and response
+        // add to currentChats
+
+        const responseArr = findQuestionFromSampleData(sampleData, text);
+
+        const userCard = {
+            icon: user,
+            name: "you",
+            message: text,
+            time: createTimeStamp(),
+            id: `you-${new Date() / 1}`,
+        }
+
+        const botCard = {
+            icon: botai,
+            name: "bot ai",
+            message: responseArr?.[0]?.response || "Sorry, Can't find answer",
+            time: createTimeStamp(),
+            id: `botAI-${new Date() / 1}`,
+            like: likeOutlinedIcon,
+            dislike: dislikeOutlinedIcon,
+        }
+
+        addChatMsg(userCard, botCard);
+    }
+
+
+    const displayCards = () => {
+
+        if(!currentChat || !currentChat.length) return [];
+
+        return currentChat.map(card => {
+            const { icon, name, message, time, id, like, dislike } = card;
+            let customClass
+            if(name === "bot ai") customClass = "botCard";
+            else customClass = "userCard"
+            return <ChatCard like={like} dislike={dislike} id={id} likeDislikeReply={likeDislikeReply} customClass={customClass} key={id} icon={icon} name={name} message={message} time={time}/>
+        })
+    }
+
+    const saveChat = () => {
+        if(!currentChat || !currentChat.length) return alert("No Conversation to save.")
+        saveChatToLocal(currentChat);
+        clearCurrentChat();
+        alert("Conversation saved!")
+    }
+
+    // Function to scroll to the bottom of the div
+    function scrollToBottom() {
+        var container = document.getElementById("cardsWrapper");
+        if(!container) return;
+        container.scrollTop = container.scrollHeight;
+    }
+
+  return (
+
+    <div className={`ChatBody ChatBodyTheme-${theme}`}>
+        {
+            currentChat?.length ?
+            <>
+                <div className='cardsWrapper' id="cardsWrapper">
+                    {displayCards()}
+                </div>
+                <InputFeild handleFormInput={handleFormInput} saveChat={saveChat}/>
+            </>
+            :
+            <>
+                <DefaultHomePage handleFormInput={handleFormInput} />
+        <InputFeild handleFormInput={handleFormInput} />
+            </>
+        }      
         </div>
-      ))} 
-      </div> 
-    </div>
   );
 };
-ChatBox.propTypes = {
-  // question: PropTypes.string.isRequired, // Require question prop of type string
-  // response: PropTypes.string.isRequired, // Require response prop of type string  
-  messages: PropTypes.arrayOf(
-    PropTypes.shape({
-      message: PropTypes.string.isRequired,
-      sender: PropTypes.oneOf(['user', 'bot']).isRequired,
-      timestamp: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
-export default ChatBox;

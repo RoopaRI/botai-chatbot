@@ -12,8 +12,9 @@
 
 .AppBodyHead{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     gap: 1rem;
+    flex-direction: column;
 }
 
 .AppBodyHead img {
@@ -22,6 +23,7 @@
 
 .AppBody h1{
     color: var(--primary1);
+    
 }
 
 

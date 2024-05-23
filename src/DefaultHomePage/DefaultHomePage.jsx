@@ -1,22 +1,29 @@
-import React from "react";
-import { Box } from '@mui/material';
-import Logo from "../Logo/Logo";
+import React, {useContext} from "react";
+import logo from "../assets/logo.png";
 import Card from "../Card/Card";
 import "./DefaultHomePage.css";
+import { ThemeContext } from "../AllContexts";
 
-const subtext="Get immediate AI generated response";
-export default function DefaultHomePage(){
+const cardText1 = "Hi, what is the weather";
+const cardText2 = "Hi, what is my location";
+const cardText3 = "Hi, what is the temperature";
+const cardText4 = "Hi, how are you";
+const subText = "Get immediate AI generated response";
+
+export default function DefaultHomePage({handleFormInput}){
+    const [theme, setTheme] = useContext(ThemeContext)
     return(
-       <Box className="container" component="section" sx={{ p: 2}}>
-           <h1 className="top-heading">BOT AI</h1>
-            <p className="subHeading">How Can I Help You Today?</p>
-            <Logo />
-            <div className="Cards">
-                <Card text="Hi, what is the weather" subText={subtext}/>
-                <Card text="Hi, what is my location" subText={subtext}/>
-                <Card text="Hi, what is the temperature" subText={subtext}/>
-                <Card text="Hi, how are you" subText={subtext}/>
-            </div>
-       </Box>
+        <div className={`Intro IntroTheme-${theme}`}>
+        <div className='introQuestion'>
+            <h1>How Can I Help You Today?</h1>
+            <img src={logo} alt="bot ai"/>
+        </div>
+        <div className='introCards'>
+            <Card handleFormInput={handleFormInput} mainText={cardText1} subText={subText}/>
+            <Card handleFormInput={handleFormInput} mainText={cardText2} subText={subText}/>
+            <Card handleFormInput={handleFormInput} mainText={cardText3} subText={subText}/>
+            <Card handleFormInput={handleFormInput} mainText={cardText4} subText={subText}/>
+        </div>
+        </div>
     );
 }
