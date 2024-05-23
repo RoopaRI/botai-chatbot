@@ -7,6 +7,7 @@ import likeOutlinedIcon from "./assets/like-outline-black.svg";
 import dislikeOutlinedIcon from "./assets/dislike-outline-black.svg";
 import likeFilledIcon from "./assets/like-filled-black.svg";
 import dislikeFilledIcon from "./assets/dislike-filled-black.svg";
+import { updateByLikeDislike } from './functions/functions';
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -22,17 +23,29 @@ function App() {
     setCurrentChat([...currentChat, userMsg, botReply]);
   }
 
-  const clearCurrentChat = () => setCurrentChat([]);
+  const newChatClick = () => {
+    //save current chat to pastConversations
+    //setCurrentChat to empty []
+    setCurrentChat([]);
+    setPastConvo(false);
+  }
 
-  // const likeDislikeReply = (chatCardId, reaction) => setCurrentChat(updateByLikeDislike(chatCardId, reaction, currentChat, iconsData));
+  const clearCurrentChat = () => setCurrentChat([]);
+  const handlePastConvo = () => setPastConvo(!pastConvo);
+  const likeDislikeReply = (chatCardId, reaction) => setCurrentChat(updateByLikeDislike(chatCardId, reaction, currentChat, iconsData));
 
   return (
     <>
     <ThemeContext.Provider value={[theme, setTheme]}>
       <main>
-      <SideBar />
+      <SideBar 
+        newChatClick={newChatClick} 
+        handleSideBar={handleSideBar} 
+        sidebarON={sidebarON} 
+        handlePastConvo={handlePastConvo}
+      />
       <HomePage 
-        // likeDislikeReply={likeDislikeReply} 
+        likeDislikeReply={likeDislikeReply} 
         pastConvo={pastConvo} 
         clearCurrentChat={clearCurrentChat} 
         addChatMsg={addChatMsg} 

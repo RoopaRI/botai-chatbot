@@ -1,35 +1,36 @@
-import React, { useState } from "react";
-import "./PastConversation.css";
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+//styles
+import "./PastConversation.css"
+//components
+import ConvoCard from '../ConvoCard/ConvoCard';
+//contexts
+import { ThemeContext } from "../AllContexts";
 
-const PastConversation = ({  chatHistory }) => {
-    const [showChatHistory, setShowChatHistory] = useState(false);
-  return (
-    <div>
-      <h2>Past Conversations</h2>
-      {showChatHistory && (
-        <ul>
-          {chatHistory.map((chat, index) => (
-            <li key={index}>
-              <strong>Question:</strong> {chat.question}<br />
-              <strong>Response:</strong> {chat.response}
-            </li>
-          ))}
-        </ul>
-      )}
-      <button onClick={() => setShowChatHistory(!showChatHistory)}>
-        {showChatHistory ? "Hide Past Conversation" : "Show Past Conversation"}
-      </button>
-    </div>
-  )
-}
-PastConversation.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  chatHistory: PropTypes.arrayOf(
-    PropTypes.shape({
-      question: PropTypes.string.isRequired,
-      response: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+
+
+export default function PastConversation() {
+    //states
+    const [convos, setConvos] = useState([]);
+    //side effects
+    useEffect(()=> {
+        loadConvos();
+    }, []);
+    //functions
+    const loadConvos = () => {
+        const allConvos = window.localStorage.getItem("pastConversations");
+        if(allConvos) setConvos(JSON.parse(allConvos));
+    }
+    const displayCards = () => convos.map(item => {
+        const {id, conversation} = item;
+        return <ConvoCard id={id} key={id} conversation={conversation} />
+    });
+
+    return (
+        <div className='PastConvo'>
+            <h4>Conversation History</h4>
+            <div className='pastConvoBody'>
+                {convos.length ? displayCards() : <h2>No Past Conversations Found</h2> }
+            </div>
+        </div>
+    );
 };
-export default PastConversation

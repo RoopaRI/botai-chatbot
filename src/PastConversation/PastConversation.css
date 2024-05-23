@@ -1,14 +1,22 @@
-.past-conv{
-    min-width: 176px;
-    min-height: 39px;
-    background: #a896c9;
-    font-size: 2rem;
+.PastConvo{
+    flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: none;
-    border-radius: 5px;
-    margin-left: 5px;
-    padding: 10px;
-    cursor: pointer;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.PastConvo h4{
+    font-size: 28px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.pastConvoBody{
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: auto;
 }
