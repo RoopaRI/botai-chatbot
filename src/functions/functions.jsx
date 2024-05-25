@@ -34,7 +34,15 @@ export const saveChatToLocal = currentChat => {
 }
 
 export const updateByLikeDislike = (chatCardId, reaction, currentChat, iconsData) => {
+
+
     const {likeOutlinedIcon, dislikeOutlinedIcon, likeFilledIcon, dislikeFilledIcon} = iconsData;
+
+    if (!currentChat || !Array.isArray(currentChat) || currentChat.length === 0) {
+        console.error("currentChat is undefined or empty");
+        return currentChat;
+    }
+
     let index;
     for(let i = 0; i < currentChat.length; i++){
       if(currentChat[i].id === chatCardId){
@@ -44,16 +52,19 @@ export const updateByLikeDislike = (chatCardId, reaction, currentChat, iconsData
     }
     //"src/assets/like-outline-black.svg"
     //"/src/assets/dislike-outline-black.svg"
-    if(index){
+    if(index!==undefined){
       let updatedChat = [...currentChat];
       if(reaction === "like"){
         // updatedChat[index].like = "/src/assets/like-filled-black.svg";
         // updatedChat[index].dislike = "/src/assets/dislike-outline-black.svg";
         updatedChat[index].like = likeFilledIcon;
         updatedChat[index].dislike = dislikeOutlinedIcon;
+        console.log("liked");
+        
       }else{
           updatedChat[index].like = likeOutlinedIcon;
           updatedChat[index].dislike = dislikeFilledIcon;
+          console.log("disliked")
       }
 
       return updatedChat;
