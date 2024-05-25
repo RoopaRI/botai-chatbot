@@ -1,3 +1,51 @@
+Goal is to implement an application where the user can chat with an AI model. 
+
+The user should be able to have multiple such conversations.
+
+Once the user is done having that conversation, the chat gets saved. This chat can be
+revisited from a panel on the side/top bar.
+
+You can mock the AI model response from a custom JSON file which includes the response for a particular question.
+
+NOTE: You can use the above SampleData.json file to add more key, value pairs if needed.
+
+o How to start the service and use the application 
+Open the Demo link provided below and type your question in the input feild provided, click ask to get response from the Bot AI.
+
+o Reasoning behind your technical choices
+Material-UI(MUI) is a popular library for React which provide
+  -Consistet and Modern Design
+  -Comprehensive Component
+  -Customizability
+  -Responsive Design
+  -Ease of use
+  -Performance
+  -Accessibility
+  -Integration with other tools
+
+o Reasoning behind your design choices
+  -Simplicity
+  -Consistency
+  -Visual Feedback (like and dislike button)
+  
+
+o Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project.
+  - Toggle between light and dark mode.
+  - The user should be able to like/dislike the AI model's answer using the thumbs
+up/thumbs down buttons. These buttons are hidden and float when the mouse
+hovers over the AI model's response.
+- The user should be able to give a rating out of 5 at the end of the conversation. You
+can get creative here and use a likert scale, or 5 stars, etc.
+- The user should be able to give subjective feedback at the end of the conversation.
+
+
+Figma:
+https://www.figma.com/design/DYoSNliUDL3DlpgHPLlc0r/Bot-AI?node-id=8-2
+
+Demo link
+https://botai-chatbot-roopa-ss-projects.vercel.app/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
