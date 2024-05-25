@@ -29,21 +29,7 @@
     width:766px;
 }
 
-h2{
-    width: 291px;
-height: 30px;
-top: 292px;
-left: 327px;
-gap: 0px;
-opacity: 0px;
-/* font-family: Open Sans; */
-font-size: 22px;
-font-weight: 400;
-line-height: 29.96px;
-text-align: left;
-margin-top: 10px;
-margin-left:10px;
-}
+
 
 .heading{
     display: flex;
