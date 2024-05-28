@@ -4,7 +4,7 @@ import "./ConvoCard.css"
 //components
 import ChatCard from '../ChatCard/ChatCard';
 //contexts
-import { ThemeContext } from '../AllContexts';
+import { ThemeContext } from '../../AllContexts';
 
 const ConvoCard = ({id, conversation}) => {
     //functions

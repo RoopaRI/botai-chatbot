@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../AllContexts";
+import { ThemeContext } from "../../AllContexts";
 import Button from "../Button/Button";
 import icon1 from "../assets/logo.png";
 import penIcon from "../assets/editIcon.png";

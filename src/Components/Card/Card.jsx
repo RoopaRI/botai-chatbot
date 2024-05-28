@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./Card.css";
-import { ThemeContext } from "../AllContexts";
+import { ThemeContext } from "../../AllContexts";
 
 export default function Card(props){
     const { mainText, subText, handleFormInput } = props;

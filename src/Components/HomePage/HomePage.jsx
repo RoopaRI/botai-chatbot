@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import "./HomePage.css";
 import menuIcon from "../assets/menu.svg";
 
-import { ThemeContext } from "../AllContexts";
+import { ThemeContext } from "../../AllContexts";
 import ChatBox from "../ChatBox/ChatBox";
 import PastConversation from "../PastConversation/PastConversation";
 

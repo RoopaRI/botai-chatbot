@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import './App.css';
-import HomePage from "./HomePage/HomePage";
-import SideBar from "./SideBar/SideBar";
+import HomePage from "./Components/HomePage/HomePage";
+import SideBar from "./Components/SideBar/SideBar";
 import { ThemeContext } from "./AllContexts";
-import likeOutlinedIcon from "./assets/like-outline-black.svg";
-import dislikeOutlinedIcon from "./assets/dislike-outline-black.svg";
-import likeFilledIcon from "./assets/like-filled-black.svg";
-import dislikeFilledIcon from "./assets/dislike-filled-black.svg";
+import likeOutlinedIcon from "./Components/assets/like-outline-black.svg";
+import dislikeOutlinedIcon from "./Components/assets/dislike-outline-black.svg";
+import likeFilledIcon from "./Components/assets/like-filled-black.svg";
+import dislikeFilledIcon from "./Components/assets/dislike-filled-black.svg";
 import { updateByLikeDislike } from './functions/functions';
 
 function App() {

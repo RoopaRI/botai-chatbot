@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ThemeContext } from "../AllContexts";
+import { ThemeContext } from "../../AllContexts";
 import DefaultHomePage from "../DefaultHomePage/DefaultHomePage";
 import "./ChatBox.css";
 import botai from "../assets/logo.png";
@@ -8,8 +8,8 @@ import likeOutlinedIcon from "../assets/like-outline-black.svg";
 import dislikeOutlinedIcon from "../assets/dislike-outline-black.svg";
 import likeFilledIcon from "../assets/like-filled-black.svg";
 import dislikeFilledIcon from "../assets/dislike-filled-black.svg";
-import sampleData from "../sampleData.json";
-import { createTimeStamp, findQuestionFromSampleData, saveChatToLocal, updateByLikeDislike } from "../functions/functions";
+import sampleData from "../../sampleData.json";
+import { createTimeStamp, findQuestionFromSampleData, saveChatToLocal, updateByLikeDislike } from "../../functions/functions";
 import ChatCard from '../ChatCard/ChatCard';
 import InputFeild from '../InputFeild/InputFeild';
 

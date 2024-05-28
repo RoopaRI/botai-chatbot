@@ -5,8 +5,8 @@ import likeOutlined from "../assets/like-outline-black.svg";
 import likeFilled from "../assets/like-filled-black.svg";
 import dislikeOutlined from "../assets/dislike-outline-black.svg";
 import dislikeFilled from "../assets/dislike-filled-black.svg";
-import { ThemeContext } from "../AllContexts";
-import { updateByLikeDislike } from '../functions/functions';
+import { ThemeContext } from "../../AllContexts";
+import { updateByLikeDislike } from '../../functions/functions';
 
 const Thumbs = ({ likeDislikeReply, id, like, dislike, openModal }) => {
     return (

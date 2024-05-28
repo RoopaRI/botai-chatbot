@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./InputFeild.css";
-import { ThemeContext } from "../AllContexts";
+import { ThemeContext } from "../../AllContexts";
 import Button from "../Button/Button";
 
 export default function InputFeild(props){

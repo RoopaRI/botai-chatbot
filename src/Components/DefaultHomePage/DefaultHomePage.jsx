@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import logo from "../assets/logo.png";
 import Card from "../Card/Card";
 import "./DefaultHomePage.css";
-import { ThemeContext } from "../AllContexts";
+import { ThemeContext } from "../../AllContexts";
 
 const cardText1 = "Hi, what is the weather";
 const cardText2 = "Hi, what is my location";

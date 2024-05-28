@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./PastConversation.css"
 import ConvoCard from '../ConvoCard/ConvoCard';
-import { ThemeContext } from "../AllContexts";
+import { ThemeContext } from "../../AllContexts";
 import Dropdown from '../Dropdown/DropDown';
 
 

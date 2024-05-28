@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 //styles
 import "./Button.css";
 //contexts
-import { ThemeContext } from "../AllContexts";
+import { ThemeContext } from "../../AllContexts";
 
 const Button = props => {
     //props
