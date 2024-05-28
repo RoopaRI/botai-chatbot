@@ -16,6 +16,7 @@ export default function PastConversation() {
     const loadConvos = () => {
         const allConvos = window.localStorage.getItem("pastConversations");
         if(allConvos) setConvos(JSON.parse(allConvos));
+        console.log(allConvos)
     }
     const displayCards = () => convos.map(item => {
         const {id, conversation} = item;

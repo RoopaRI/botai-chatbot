@@ -41,6 +41,8 @@ export default function ChatBox(props) {
             id: `botAI-${new Date() / 1}`,
             like: likeOutlinedIcon,
             dislike: dislikeOutlinedIcon,
+            rating:0,
+            feedback:""
         };
 
         addChatMsg(userCard, botCard);
@@ -64,7 +66,7 @@ export default function ChatBox(props) {
         if (!currentChat || !currentChat.length) return [];
 
         return currentChat.map(card => {
-            const { icon, name, message, time, id, like, dislike } = card;
+            const { icon, name, message, time, id, like, dislike, feedback, rating } = card;
             let customClass;
             if (name === "bot ai") customClass = "botCard";
             else customClass = "userCard";
@@ -82,6 +84,8 @@ export default function ChatBox(props) {
                     time={time}
                     currentChat={currentChat} // Pass currentChat
                     setCurrentChat={setCurrentChat} // Pass setCurrentChat
+                    rating={rating}
+                    feedback={feedback}
                 />
             );
         });

@@ -10,14 +10,14 @@ import { IoIosStar } from "react-icons/io";
 
 Modal.setAppElement("#root");
 
-const ModalComp = ({ isOpen, onRequestClose, modalType, rating, setRating, feedback, setFeedback, handleSubmit }) => {
+const ModalComp = ({ isOpen, onRequestClose, modalType, rating, setRating, feedback, setFeedback, handleSubmit, starColor, setStarColor}) => {
 
-    const [starColor, setStarColor] = useState(Array(5).fill('white'));
+    // const [starColor, setStarColor] = useState(Array(5).fill('white'));
 
     const handleStarClick = (starIndex) => {
-        const newStarColor = [...starColor];
-        newStarColor[starIndex] = newStarColor[starIndex] === 'black' ? 'white' : 'black';
+        const newStarColor = starColor.map((color, index)=> index <=starIndex ? "black" : "white");
         setStarColor(newStarColor);
+        console.log(newStarColor);
     }
 
     return (
@@ -40,8 +40,8 @@ const ModalComp = ({ isOpen, onRequestClose, modalType, rating, setRating, feedb
                     <Stack spacing={1}>
                         <Rating name="rating" value={rating} onChange={(event, newValue) => setRating(newValue)} />
                     </Stack>
-                    {/* <button onClick={handleSubmit}>Submit</button> */}
-                    <Button onClick={handleSubmit} text="Submit"/>
+                    {/* <Button onClick={handleSubmit} text="Submit"/> */}
+                    <button onClick={handleSubmit}>Submit</button>
                 </div>
             ) : modalType === 'dislike' ? (
                 <div className="dislike">
@@ -51,8 +51,8 @@ const ModalComp = ({ isOpen, onRequestClose, modalType, rating, setRating, feedb
                     </div>
                     
                     <textarea className="textArea" value={feedback} onChange={(e) => setFeedback(e.target.value)}  />
-                    {/* <button onClick={handleSubmit}>Submit</button> */}
-                    <Button onClick={handleSubmit} text="Submit"/>
+                    {/* <Button onClick={handleSubmit} text="Submit"/> */}
+                    <button onClick={handleSubmit}>Submit</button>
                 </div>
             ) : null}
         </Modal>

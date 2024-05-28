@@ -7,6 +7,8 @@ import dislikeOutlined from "../assets/dislike-outline-black.svg";
 import dislikeFilled from "../assets/dislike-filled-black.svg";
 import { ThemeContext } from "../../AllContexts";
 import { updateByLikeDislike } from '../../functions/functions';
+import { IoIosStarOutline } from "react-icons/io";
+import { IoIosStar } from "react-icons/io";
 
 const Thumbs = ({ likeDislikeReply, id, like, dislike, openModal }) => {
     return (
@@ -22,34 +24,45 @@ const ChatCard = props => {
     const [theme] = useContext(ThemeContext);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalType, setModalType] = useState(null);
-    const [feedback, setFeedback] = useState('');
+    const [feedback, setFeedback] = useState("");
     const [rating, setRating] = useState(0);
+    const [starColor, setStarColor] =useState(Array(5).fill("white"));
 
     const openModal = (type, id) => {
         setModalType(type);
         setModalIsOpen(true);
-        const updatedChat = updateByLikeDislike(id, type, currentChat, {
-            likeOutlinedIcon: likeOutlined,
-            dislikeOutlinedIcon: dislikeOutlined,
-            likeFilledIcon: likeFilled,
-            dislikeFilledIcon: dislikeFilled
-        });
-        setCurrentChat(updatedChat);
+        // const updatedChat = updateByLikeDislike(id, type, currentChat, {
+        //     likeOutlinedIcon: likeOutlined,
+        //     dislikeOutlinedIcon: dislikeOutlined,
+        //     likeFilledIcon: likeFilled,
+        //     dislikeFilledIcon: dislikeFilled
+        // });
+        // setCurrentChat(updatedChat);
     };
 
     const closeModal = () => {
         setModalIsOpen(false);
         setModalType(null);
-        setFeedback('');
+        setFeedback(feedback);
         setRating(0);
+        setStarColor(Array(5).fill("black"));
     };
 
     const handleSubmit = () => {
-        if (modalType === 'like') {
-            console.log(`Rated ${rating} stars`);
-        } else if (modalType === 'dislike') {
-            console.log(`Feedback: ${feedback}`);
-        }
+        console.log("submit clicked")
+        const updatedChat = currentChat.map(card => {
+            if(card.id===id){
+                if(modalType==="like"){
+                    return {...card, starColor};
+                }
+                else if(modalType==="dislike"){
+                    return {...card, feedback};
+                }
+            }
+            return card;
+        }) 
+        setCurrentChat(updatedChat);
+        console.log(updatedChat)
         closeModal();
     };
 
@@ -67,6 +80,18 @@ const ChatCard = props => {
                     <span> {time} </span>
                     {name === "bot ai" ? <Thumbs like={like} dislike={dislike} likeDislikeReply={likeDislikeReply} id={id} openModal={openModal} /> : null}
                 </span>
+                {name === "bot ai" && (
+                    <div className='reviewFeedback'>
+                        {starColor[0] === "black" && (
+                            <div className="reviewStar">
+                                Ratings: {starColor.map((color, index) =>
+                                    color === "black" ? <IoIosStar key={index} className="bigger-star black"  /> : <IoIosStarOutline key={index}  className="bigger-star white"/>
+                                )}
+                            </div>
+                        )}
+                        {feedback && <div>Feedback: {feedback}</div>}
+                    </div>
+                )}
             </span>
             <ModalComp
                 isOpen={modalIsOpen}
@@ -74,6 +99,8 @@ const ChatCard = props => {
                 modalType={modalType}
                 rating={rating}
                 setRating={setRating}
+                starColor={starColor}
+                setStarColor={setStarColor}
                 feedback={feedback}
                 setFeedback={setFeedback}
                 handleSubmit={handleSubmit}
